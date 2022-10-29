@@ -1,7 +1,7 @@
 package org.amanda.tarefa.manager;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import org.amanda.tarefa.model.Responsavel;
+import org.amanda.tarefa.model.Tarefa;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -31,6 +31,20 @@ public class EntityManagerProvider {
 
     public void disposes(@Disposes EntityManager em) {
         em.close();
+    }
+
+    public void salvarTarefa(Tarefa tarefa){
+        EntityManager em = produce();
+        em.getTransaction().begin();
+        em.persist(tarefa);
+        em.getTransaction().commit();
+    }
+
+    public void salvarResponsavel(Responsavel responsavel){
+        EntityManager em = produce();
+        em.getTransaction().begin();
+        em.persist(responsavel);
+        em.getTransaction().commit();
     }
 
     /*

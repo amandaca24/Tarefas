@@ -22,8 +22,10 @@
                     <h:outputLabel for="titulo" value="Título"/>
                     <p:inputText id="titulo" value="#{tarefaView.filtro.tituloLike}"/>
                     <p:commandButton value="Pesquisar" update="@form" styleClass="mt-3" action="#{tarefaView.buscarTarefasPorFiltro}"/>
-                    <p:commandButton value="Adicionar" styleClass="mt-3"
-                                     action="#{tarefaView.abrirPaginaEditar}" />
+                    <p:commandButton value="Adicionar Tarefa" styleClass="mt-3"
+                                     action="tarefaEdit.xhtml?faces-redirect=true" />
+                    <p:commandButton value="Adicionar Responsável" styleClass="mt-3"
+                                     action="responsavelEdit.xhtml?faces-redirect=true" />
                 </h:panelGrid>
 
             <p:dataTable id="tblTarefas" widgetVar="jpaTable" value="#{tarefaView.tarefas}" var="row">

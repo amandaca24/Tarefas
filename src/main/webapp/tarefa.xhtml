@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Gestor de Tarefas</title>
+        <h:outputScript name="test.js" />
+        <h:outputStylesheet name="test.css" />
+    </h:head>
+    <h:body>
+    <h:form>
+        <h1>#{tarefaView.string}</h1>
+            <p:messages id="messages"/>
+                <h:panelGrid cellpadding="7">
+                    <h:outputLabel for="numero" value="Número"/>
+                    <p:inputText id="numero" value="#{tarefaView.filtro.idEquals}"/>
+                    <h:outputLabel for="titulo" value="Título"/>
+                    <p:inputText id="titulo" value="#{tarefaView.filtro.tituloLike}"/>
+                    <p:commandButton value="Pesquisar" update="@form" styleClass="mt-3" action="#{tarefaView.buscarTarefasPorFiltro}"/>
+                    <p:commandButton value="Adicionar" styleClass="mt-3"
+                                     action="#{tarefaView.abrirPaginaEditar}" />
+                </h:panelGrid>
+
+            <p:dataTable id="tblTarefas" widgetVar="jpaTable" value="#{tarefaView.tarefas}" var="row">
+                <p:column field="id" />
+                <p:column field="titulo" />
+                <p:column field="descricao" />
+                <p:column field="responsavel.nome" />
+                <p:column field="prioridade" >
+                    <f:facet name="filter">
+                        <p:datePicker onchange="PF('tblTarefas').filter()" />
+                    </f:facet>
+                </p:column>
+                <p:column headerText="Ações">
+                    <p:commandButton icon="fa fa-pencil" styleClass="mt-3"
+                                     action="#{tarefaView.abrirPaginaEditar}"/>
+
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

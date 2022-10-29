@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:f="http://xmlns.jcp.org/jsf/core"
+              xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+              xmlns:jsf="http://xmlns.jcp.org/jsf"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+            <title>Adicionar Tarefa</title>
+            <h:outputScript name="test.js" />
+            <h:outputStylesheet name="test.css" />
+        </h:head>
+        <h:body>
+            <h:form>
+                <h1>#{tarefaView.string}</h1>
+                <p:messages id="messages"/>
+                <h:panelGrid cellpadding="7">
+                    <h:outputLabel for="titulo" value="Título"/>
+                    <p:inputText id="titulo" value="#{tarefaView.tarefa.titulo}"/>
+                    <p:commandButton value="Salvar" styleClass="mt-3" action="#{tarefaView.salvarTarefa}"/>
+                </h:panelGrid>
+
+            </h:form>
+        </h:body>
+        </html>
